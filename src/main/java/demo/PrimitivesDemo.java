@@ -5,6 +5,8 @@ import java.util.stream.IntStream;
 import static java.util.stream.IntStream.range;
 
 public class PrimitivesDemo {
+    private static String message = "";
+
     public static strictfp void main(String[] args) {
         //region Целые
         byte b = 07; //0b100
@@ -63,5 +65,42 @@ public class PrimitivesDemo {
         // -> BigDecimal
         //endregion
         //endregion
+
+        //region Reference types
+        Object object = new Object();
+        Object object2 = object;
+        System.out.println( object == object2 );
+        subMethod(object2);
+        //endregion
+
+        //region String
+        String str1 = "abc"; //new String("abc") -> string pool
+        String str2 = "abc"; //str2 = str1
+        System.out.println( str1 == str2 );
+
+        final String newStr = str1.toUpperCase();
+        System.out.println(str1);
+
+        String s1 = new String("abc");
+        String s2 = new String("abc");
+        //String.intern
+        System.out.println( s1 == s2 );
+        //endregion
+
+        String strResult = "a" + "b" + "c";
+        // -> StringBuffer/StringBuilder
     }
+
+    private static void subMethod(Object toPrint) {
+        System.out.println(toPrint);
+    }
+}
+
+class Employee {
+    private static String companyName = "";
+
+    //-.-.-.-.-.-.-.-.-.-.-
+
+    private int id;
+    private Employee boss;
 }
