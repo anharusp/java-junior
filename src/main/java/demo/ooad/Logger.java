@@ -1,8 +1,19 @@
 package demo.ooad;
 
 public class Logger {
-    private ContentLengthLoggerFilter filter = new ContentLengthLoggerFilter(10);
-    private FileLoggerSaver saver = new FileLoggerSaver("filename");
+    // [GRASP] Creator -> [GoF] Factory Method -> [GoF] Abstract Factory
+    private LoggerFilter filter = new XmlConfigFilterFactory().create();
+    private LoggerSaver saver; //Field DI
+
+    // Constructor DI
+    public Logger(LoggerSaver saver) {
+        this.saver = saver;
+    }
+
+    // Setter DI
+    public void setSaver(LoggerSaver saver) {
+        this.saver = saver;
+    }
 
     /**
      * @param message
